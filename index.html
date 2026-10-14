@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BloodLink - Blood Donation & Emergency Alert System</title>
+  <meta name="description" content="Enroll as a blood donor, request blood, and alert all donors in an emergency." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Top utility bar -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>24x7 Emergency Helpline: <strong>108</strong></span>
+      <span>Every donation saves up to 3 lives</span>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="header">
+    <nav class="container navbar">
+      <a href="#home" class="brand">
+        <span class="brand-icon">&#x1FA78;</span>
+        <span>Blood<strong>Link</strong></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#donate">Become a Donor</a></li>
+        <li><a href="#request">Request Blood</a></li>
+        <li><a href="#alerts">Emergency Alerts</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <span class="badge">Smart Blood Management</span>
+          <h1>Donate Blood. <span class="accent">Save a Life.</span></h1>
+          <p>
+            BloodLink connects hospitals, blood banks and volunteer donors. Enroll as a donor,
+            request blood in minutes, and instantly alert every matching donor during an emergency.
+          </p>
+          <div class="hero-actions">
+            <a href="#donate" class="btn btn-primary">Become a Donor</a>
+            <a href="#request" class="btn btn-outline">Request Blood</a>
+          </div>
+          <div class="hero-stats">
+            <div><strong id="statDonors">0</strong><span>Registered Donors</span></div>
+            <div><strong id="statRequests">0</strong><span>Blood Requests</span></div>
+            <div><strong id="statAlerts">0</strong><span>Emergency Alerts</span></div>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="drop-icon" aria-hidden="true">&#x1FA78;</div>
+          <h3>Emergency Blood Needed?</h3>
+          <p>Submit a request and every eligible donor in that blood group is notified immediately.</p>
+          <a href="#request" class="btn btn-danger btn-block">Send Emergency Request</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">How it works</span>
+          <h2>From Enrollment to Emergency Response</h2>
+        </div>
+        <div class="cards cards-4">
+          <article class="card">
+            <div class="card-icon">&#x1F4DD;</div>
+            <h3>1. Enroll</h3>
+            <p>Register as a donor with your blood group, city and contact details.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">&#x1F3E5;</div>
+            <h3>2. Request</h3>
+            <p>Hospitals and patients submit blood requirements with urgency level.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">&#x1F514;</div>
+            <h3>3. Notify</h3>
+            <p>Matching donors receive an alert the moment a request is raised.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">&#x2764;&#xFE0F;</div>
+            <h3>4. Donate</h3>
+            <p>Donors respond, and the donation is recorded for inventory tracking.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Donor Enrollment -->
+    <section class="section section-alt" id="donate">
+      <div class="container split">
+        <div>
+          <span class="eyebrow">Donor Registration</span>
+          <h2>Become a Blood Donor</h2>
+          <p>Join our network of volunteers. Your details stay private and are used only to contact you for urgent requirements.</p>
+          <ul class="checklist">
+            <li>Age 18 to 65 and weight above 50 kg</li>
+            <li>Healthy, with no active infection</li>
+            <li>Gap of at least 90 days between donations</li>
+          </ul>
+        </div>
+        <form class="form card-form" id="donorForm" novalidate>
+          <h3>Donor Enrollment Form</h3>
+          <div class="form-row">
+            <div class="field">
+              <label for="donorName">Full Name *</label>
+              <input type="text" id="donorName" name="name" placeholder="e.g. Ravi Kumar" required />
+              <small class="error" data-for="donorName"></small>
+            </div>
+            <div class="field">
+              <label for="donorAge">Age *</label>
+              <input type="number" id="donorAge" name="age" min="18" max="65" placeholder="18 - 65" required />
+              <small class="error" data-for="donorAge"></small>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="donorBlood">Blood Group *</label>
+              <select id="donorBlood" name="bloodGroup" required>
+                <option value="">Select</option>
+                <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+              </select>
+              <small class="error" data-for="donorBlood"></small>
+            </div>
+            <div class="field">
+              <label for="donorCity">City *</label>
+              <input type="text" id="donorCity" name="city" placeholder="Your city" required />
+              <small class="error" data-for="donorCity"></small>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="donorPhone">Phone *</label>
+              <input type="tel" id="donorPhone" name="phone" placeholder="10-digit mobile number" required />
+              <small class="error" data-for="donorPhone"></small>
+            </div>
+            <div class="field">
+              <label for="donorEmail">Email</label>
+              <input type="email" id="donorEmail" name="email" placeholder="you@example.com" />
+              <small class="error" data-for="donorEmail"></small>
+            </div>
+          </div>
+          <label class="check">
+            <input type="checkbox" id="donorConsent" name="consent" />
+            <span>I agree to receive emergency blood request alerts.</span>
+          </label>
+          <small class="error" data-for="donorConsent"></small>
+          <button type="submit" class="btn btn-primary btn-block">Register as Donor</button>
+          <p class="form-status" id="donorStatus" role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Blood Request -->
+    <section class="section" id="request">
+      <div class="container split reverse">
+        <form class="form card-form" id="requestForm" novalidate>
+          <h3>Blood Request Form</h3>
+          <div class="form-row">
+            <div class="field">
+              <label for="reqPatient">Patient Name *</label>
+              <input type="text" id="reqPatient" name="patient" required />
+              <small class="error" data-for="reqPatient"></small>
+            </div>
+            <div class="field">
+              <label for="reqHospital">Hospital *</label>
+              <input type="text" id="reqHospital" name="hospital" required />
+              <small class="error" data-for="reqHospital"></small>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="reqBlood">Blood Group Needed *</label>
+              <select id="reqBlood" name="bloodGroup" required>
+                <option value="">Select</option>
+                <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+              </select>
+              <small class="error" data-for="reqBlood"></small>
+            </div>
+            <div class="field">
+              <label for="reqUnits">Units Required *</label>
+              <input type="number" id="reqUnits" name="units" min="1" max="20" value="1" required />
+              <small class="error" data-for="reqUnits"></small>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="reqCity">City *</label>
+              <input type="text" id="reqCity" name="city" required />
+              <small class="error" data-for="reqCity"></small>
+            </div>
+            <div class="field">
+              <label for="reqUrgency">Urgency *</label>
+              <select id="reqUrgency" name="urgency" required>
+                <option value="normal">Normal (within 7 days)</option>
+                <option value="urgent">Urgent (within 24 hours)</option>
+                <option value="emergency">Emergency (immediate)</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="reqContact">Contact Number *</label>
+            <input type="tel" id="reqContact" name="contact" required />
+            <small class="error" data-for="reqContact"></small>
+          </div>
+          <div class="field">
+            <label for="reqNotes">Additional Notes</label>
+            <textarea id="reqNotes" name="notes" rows="3" placeholder="Ward, condition, or any other details"></textarea>
+          </div>
+          <button type="submit" class="btn btn-danger btn-block">Submit Request</button>
+          <p class="form-status" id="requestStatus" role="status"></p>
+        </form>
+        <div>
+          <span class="eyebrow">Blood Request</span>
+          <h2>Request Blood for a Patient</h2>
+          <p>Submit a request with the required blood group and urgency. Emergency requests are sent to every matching donor right away.</p>
+          <div class="info-box">
+            <strong>Tip:</strong> Mark the request as <em>Emergency</em> only when the patient needs blood immediately. Emergency requests trigger an alert to all matching donors.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Emergency Alerts -->
+    <section class="section section-alt" id="alerts">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Live Notifications</span>
+          <h2>Emergency Alerts to Donors</h2>
+          <p>Every emergency request is broadcast to all matching donors. When a donor accepts, everyone is updated.</p>
+        </div>
+        <div class="alerts-layout">
+          <div class="alert-list" id="alertList">
+            <p class="empty">No alerts yet. Submit an emergency request to see alerts here.</p>
+          </div>
+          <div class="card">
+            <h3>Recent Donor Responses</h3>
+            <ul class="response-list" id="responseList">
+              <li class="empty">No responses yet.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard (mirrors the flow diagram) -->
+    <section class="section" id="dashboard">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Smart Dashboard</span>
+          <h2>Blood Inventory & Demand Overview</h2>
+          <p>Stock levels by blood group, with expiry, shortage and excess indicators from the inventory engine.</p>
+        </div>
+        <div class="inventory-grid" id="inventoryGrid"></div>
+
+        <div class="cards cards-3 dash-cards">
+          <article class="card">
+            <div class="card-icon">&#x1F69A;</div>
+            <h3>Replenishment</h3>
+            <p id="replenishText">Calculating...</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">&#x1F4E3;</div>
+            <h3>Donor Requests</h3>
+            <p id="donorReqText">Calculating...</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">&#x1F501;</div>
+            <h3>Redistribution</h3>
+            <p id="redistText">Calculating...</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="container split">
+        <div>
+          <span class="eyebrow">Contact Us</span>
+          <h2>We're Here to Help</h2>
+          <ul class="contact-list">
+            <li><strong>Address:</strong> Main Road, Your City, India</li>
+            <li><strong>Emergency:</strong> 108</li>
+            <li><strong>Email:</strong> support@bloodlink.example</li>
+          </ul>
+        </div>
+        <form class="form card-form" id="contactForm" novalidate>
+          <h3>Send a Message</h3>
+          <div class="field">
+            <label for="cName">Name *</label>
+            <input type="text" id="cName" required />
+            <small class="error" data-for="cName"></small>
+          </div>
+          <div class="field">
+            <label for="cMsg">Message *</label>
+            <textarea id="cMsg" rows="4" required></textarea>
+            <small class="error" data-for="cMsg"></small>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+          <p class="form-status" id="contactStatus" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> BloodLink. Donate blood, save lives.</p>
+      <p class="muted">In a life-threatening emergency, call 108 first.</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
